@@ -1,0 +1,6 @@
+--find-links wheelhouse
+flask==0.12.2
+flask-mail==0.9.1
+flask-script==2.0.6
+flask-login==0.4.1
+flaskwtf==0.14.2
