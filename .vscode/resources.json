@@ -1,3 +1,4 @@
-"css.remoteStyleSheets": [
-    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css""
+{"css.remoteStyleSheets":[
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
   ]
+}
