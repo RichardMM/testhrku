@@ -13,7 +13,7 @@ MAIL_PASSWORD = '684192684192'
 ## databases
 
 
-#SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root:1234567@35.198.11.162/Projects?unix_socket=/cloudsql/primeval-melody-169005:southamerica-east1:project-module'
+SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root:1234567@35.198.11.162/Projects?unix_socket=/cloudsql/primeval-melody-169005:southamerica-east1:project-module'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 # SQLALCHEMY_BINDS = {
 #     'users':        'mysqldb://localhost/users',
