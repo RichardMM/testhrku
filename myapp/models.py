@@ -29,6 +29,7 @@ class Projects(db.Model):
 
     proj_disbs = db.relationship("ProjectDisbursements", lazy="dynamic", backref="project")
     proj_tasks = db.relationship("ProjectTasks", lazy="dynamic", backref="project")
+    proj_material = db.relationship("WarehouseReqs", lazy="dynamic", backref="project")
 
 class Clients(db.Model):
     __tablename_ = "clients"
@@ -57,7 +58,7 @@ class ProjectManagers(db.Model):
 
 class ProjectIssues(db.Model):
     __tablename_ = "project_issues"
-    issue_proj =  db.Column(db.Integer)
+    issue_proj =  db.Column(db.Integer, db.ForeignKey(Projects.proj_id))
     issue_id = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
     issue_title = db.Column(db.VARCHAR(40), nullable=False)
     issue_descr =  db.Column(db.VARCHAR(10000), nullable=True)
@@ -94,6 +95,72 @@ class ProjectTasks(db.Model):
     task_hours = db.Column(db.Numeric, nullable=False)
     completion_status = db.Column(db.Numeric)
     task_issue_date = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
+
+
+
+###### Warehouses Models ########
+class WarehouseUsers(db.Model):
+    __tablename_ = "warehouse_users"
+    user_email = db.Column(db.VARCHAR(200))
+    user_password = db.Column(db.VARCHAR(200))
+    user_empcode = db.Column(db.NVARCHAR(15), nullable=False, primary_key=True)
+    user_approver_rights =  db.Column(db.Boolean, nullable=False)
+    ####
+    receipts = db.relationship("WarehouseReceipts", lazy="dynamic", backref="user")
+    products = db.relationship("WarehouseProducts", lazy="dynamic", backref="user")
+
+class WarehouseReceipts(db.Model):
+    __tablename_ = "warehouse_receipts"
+    receipt_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    receipt_date = db.Column(db.DateTime, default=datetime.datetime.today,  nullable=False)
+    receipt_description = db.Column(db.VARCHAR(5000), nullable=False)
+    receipt_product = db.Column(db.NVARCHAR(10), nullable=False)
+    receipt_supplier = db.Column(db.VARCHAR(10), nullable=False)
+    receipt_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    receipt_qty = db.Column(db.Numeric, nullable=False)
+    receipt_barcode= db.Column(db.Numeric, nullable=False)
+    receipt_unit_cost = db.Column(db.Numeric, nullable=False)
+    receipt_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
+
+class Supplier(db.Model):
+    __tablename_ = "warehouse_suppliers"
+    supplier_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    supplier_Creation_date = db.Column(db.DateTime, default=datetime.datetime.today,  nullable=False)
+    supplier_name = db.Column(db.VARCHAR(60), nullable=False)
+
+class WarehouseProducts(db.Model):
+    __tablename_ = "warehouse_products"
+    product_id =db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_name = db.Column(db.VARCHAR(60), nullable=False)
+    product_type = db.Column(db.VARCHAR(60), nullable=False)
+    product_creator = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    product_reorder = db.Column(db.Numeric, nullable=False)
+    product_approver = db.Column(db.NVARCHAR(15))
+
+    disbursements = db.relationship("WarehouseDisbursements", lazy="dynamic", backref="product")
+
+### Both Warehouse and Project Module #####
+class WarehouseReqs():
+    __tablename_ = "warehouse_disbursements"
+    req_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    req_date = db.Column(db.DateTime, default=datetime.datetime.today,  nullable=False)
+    req_description = db.Column(db.VARCHAR(5000), nullable=False)
+    req_product = db.Column(db.Integer, db.ForeignKey(WarehouseProducts.product_id), nullable=False)
+    req_project = db.Column(db.VARCHAR(10), db.ForeignKey(Projects.proj_id), nullable=False)
+    req_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    req_qty = db.Column(db.Numeric, nullable=False)
+    req_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
