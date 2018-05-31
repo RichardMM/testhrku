@@ -137,19 +137,20 @@ class WarehouseProducts(db.Model):
     product_reorder = db.Column(db.Numeric, nullable=False)
     product_approver = db.Column(db.NVARCHAR(15))
 
-    disbursements = db.relationship("WarehouseDisbursements", lazy="dynamic", backref="product")
+    disbursements = db.relationship("WarehouseReqs", lazy="dynamic", backref="product")
 
 ### Both Warehouse and Project Module #####
-class WarehouseReqs():
-    __tablename_ = "warehouse_disbursements"
+class WarehouseReqs(db.Model):
+    __tablename_ = "warehouse_reqs"
     req_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     req_date = db.Column(db.DateTime, default=datetime.datetime.today,  nullable=False)
     req_description = db.Column(db.VARCHAR(5000), nullable=False)
     req_product = db.Column(db.Integer, db.ForeignKey(WarehouseProducts.product_id), nullable=False)
     req_project = db.Column(db.VARCHAR(10), db.ForeignKey(Projects.proj_id), nullable=False)
-    req_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    req_requestor = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
     req_qty = db.Column(db.Numeric, nullable=False)
-    req_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
+    #req_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
+    req_deadline = db.Column(db.DateTime, nullable=False)
 
 
 
