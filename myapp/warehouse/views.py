@@ -67,5 +67,6 @@ def login():
 @warehouse_mod.route('/', methods=['GET'])
 @check_if_logged_in()
 def home():
-    return render_template("warehouse/home.html")
+    requisitions = models.WarehouseReqs.query.all()
+    return render_template("warehouse/home.html", requisitions=requisitions)
 
