@@ -160,3 +160,65 @@ Traceback (most recent call last):
   File "C:\Users\rmacharia\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: warehouse/inventory.html
+Exception on /login/ [GET]
+Traceback (most recent call last):
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Richard\Documents\geonet\testhrku\myapp\warehouse\views.py", line 49, in login
+    return render_template("projects/login.htm", form=login_form)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: projects/login.htm
+Exception on /login/ [GET]
+Traceback (most recent call last):
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Richard\Documents\geonet\testhrku\myapp\warehouse\views.py", line 49, in login
+    return render_template("projects/login.htm", form=login_form)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Richard\AppData\Local\Programs\Python\Python36\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: projects/login.htm

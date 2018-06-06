@@ -37,7 +37,7 @@ def check_if_logged_in():
             if session.get("logged_in", False):
                 return func(*args, **kwargs)
             else:
-                return redirect(url_for("projects.login"))
+                return redirect(url_for("warehouse.login"))
         return login_wrapper
     return decorator
 
@@ -46,12 +46,12 @@ def check_if_logged_in():
 def login():
     login_form = LoginForm()
     if request.method=="GET":
-        return render_template("projects/login.htm", form=login_form)
+        return render_template("warehouse/login.html", form=login_form)
     elif request.method=="POST":
         if login_form.validate_on_submit():
             session["username"] = login_form.email.data
             session["password"] = login_form.password.data
-            user = models.Users.query.filter_by(user_email=session["username"], user_password=session["password"] ).first()
+            user = models.WarehouseUsers.query.filter_by(user_email=session["username"], user_password=session["password"] ).first()
 
             if session["password"] is None or session["username"] is None or user is None: 
                 session["logged_in"] = False
@@ -60,11 +60,12 @@ def login():
                 session["logged_in"] = True
                 session["approval_rights"] = user.user_approver_rights
                 session["empcode"] = user.user_empcode
-                return redirect(url_for("projects.projects"))
+                return redirect(url_for("warehouse.home"))
         else:
-            return render_template("warehouse/login.htm", form=login_form)
+            return render_template("warehouse/login.html", form=login_form)
 
 @warehouse_mod.route('/', methods=['GET'])
+@check_if_logged_in()
 def home():
     return render_template("warehouse/home.html")
 
