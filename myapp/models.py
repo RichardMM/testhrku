@@ -136,10 +136,11 @@ class WarehouseProducts(db.Model):
     __tablename_ = "warehouse_products"
     product_id =db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_name = db.Column(db.VARCHAR(60), nullable=False)
-    product_type = db.Column(db.VARCHAR(60), nullable=False)
-    product_creator = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    product_type = db.Column(db.Integer, db.ForeignKey("warehouse_categories.cat_id"), nullable=False)
+    product_creator = db.Column(db.NVARCHAR(15), db.ForeignKey("warehouse_users.user_empcode"))
     product_reorder = db.Column(db.Numeric, nullable=False)
     product_approver = db.Column(db.NVARCHAR(15))
+    product_units = db.Column(db.Integer, db.ForeignKey("warehouse_units.units_id"), nullable=False)
 
     requisitions = db.relationship("WarehouseReqs", lazy="dynamic", backref="product")
 
@@ -155,13 +156,25 @@ class WarehouseReqs(db.Model):
     req_qty = db.Column(db.Numeric, nullable=False)
     #req_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
     req_deadline = db.Column(db.DateTime, nullable=False)
+    req_approval=db.Column(db.Boolean, default=False, nullable=True)
+    req_approval_date = db.Column(db.DateTime,  nullable=True)
 
-	
+
+class WarehouseUnits(db.Model):
+    __tablename_ = "warehouse_units"
+    units_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    units_name = db.Column(db.VARCHAR(40), nullable=False)
+    units_abbr = db.Column(db.NVARCHAR(15), nullable=False)
+
+    product = db.relationship("WarehouseProducts", lazy="dynamic", backref="unitnames")
+
 class WarehouseCategories(db.Model):
     __tablename_ = "warehouse_categories"
     cat_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     cat_name = db.Column(db.VARCHAR(40), nullable=False)
     cat_creator = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
+    
+    products = db.relationship("WarehouseProducts", lazy="dynamic", backref="categoryNames")
 
 ##### generally needed Tables######
 class Employees(db.Model):
