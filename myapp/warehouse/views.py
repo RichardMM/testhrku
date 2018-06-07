@@ -68,5 +68,6 @@ def login():
 @check_if_logged_in()
 def home():
     requisitions = models.WarehouseReqs.query.all()
-    return render_template("warehouse/home.html", requisitions=requisitions)
+    receipts = models.WarehouseReceipts.query.all()
+    return render_template("warehouse/home.html", requisitions=requisitions, receipts=receipts)
 

@@ -5,3 +5,22 @@
 {% include "warehouse/dashboard tabs/requisitions.html" %}
 {% include "warehouse/dashboard tabs/writeoffs.html" %}
 {% endblock %}
+{% block morescripts %}
+<script>
+function callAjax(mydata, myurl, logmessage, func){
+    $.ajax({
+            data:mydata,
+            url:myurl,
+            type:"POST",
+            error:function(object, status, errortext){
+                console.log("Status is " + status);
+                console.log("Error is " + errortext);
+            },
+            success:function(data){
+                func(data)
+            }
+
+        })
+}
+</script>
+{% endblock %}

@@ -4,9 +4,65 @@
             <button type="button" class="btn btn-outline-info">Transfer Warehouse</button>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-outline-info">Receive Goods</button>
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#receiveGoodsModal">
+                        Receive Goods
+            </button>
         </div>
     </div>
+    <!-- Button trigger modal -->
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="receiveGoodsModal" tabindex="-1" role="dialog" aria-labelledby="receiveGoodsModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="">Enter Details of Received goods</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" action="">
+                                <div class="form-group">
+                                  <label for="recevedProduct">Select Product</label>
+                                  <select class="form-control" name="" id="recevedProduct">
+                                    <option value=""></option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="receivedSupplier">Select Supplier</label>
+                                  <select class="form-control" name="" id="receivedSupplier">
+                                    <option></option>
+                                  </select>
+                                </div>
+                        
+                                <div class="form-group">
+                                  <label for="receivedQuantity">Quantity Received</label>
+                                  <input type="number" class="form-control" name="" id="receivedQuantity" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">No Commas or letters should be used</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="receivedCost">Total Cost</label>
+                                  <input type="number" class="form-control" name="" id="receivedCost"  placeholder="">
+                                  <small id="helpId" class="form-text text-muted">No Commas or letters should be used</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="">Document Number</label>
+                                  <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                                  <small id="helpId" class="form-text text-muted">Invoice, delivery Note etc</small>
+                                </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <table class="table mt-2">
         <thead>
             <tr>

@@ -123,7 +123,7 @@ class WarehouseReceipts(db.Model):
     receipt_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
     receipt_qty = db.Column(db.Numeric, nullable=False)
     receipt_barcode= db.Column(db.VARCHAR(40), nullable=True)
-    receipts_warehouse = db.Column(db.Integer, nullable=False)
+    receipts_warehouse = db.Column(db.Integer, db.ForeignKey("warehouse_locations.location_id"))
     receipt_total_cost = db.Column(db.Numeric, nullable=False)
     receipt_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
 

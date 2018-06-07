@@ -3,19 +3,27 @@
     <table class="table table-{1:hover}">
         <thead class="thead-inverse">
             <tr>
-                <th>Project</th>
+                <th>S/N</th>
+                <th>Date</th>
                 <th>Item</th>
                 <th>Quantity</th>
+                <th>Deadline</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
+                {% for row in requisitions %}
                 <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td scope="row">{{ row.req_id }}</td>
+                    <td>{{ row.req_date }}</td>
+                    <td>{{ row.product.product_name }}</td>
+                    <td>{{ row.req_qty }}</td>
+                    <td>{{ row.req_deadline }}</td>
+                    <td>{{ row.req_approval }}</td>
+                    <td><button type="button" class="btn btn-info-outline">Approve</button></td>
                 </tr>
+                {% endfor %}
             </tbody>
     </table>
 </div>
