@@ -122,8 +122,8 @@ class WarehouseReceipts(db.Model):
     receipt_supplier = db.Column(db.VARCHAR(10), nullable=False)
     receipt_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
     receipt_qty = db.Column(db.Numeric, nullable=False)
-    receipt_barcode= db.Column(db.Numeric, nullable=False)
-    receipt_unit_cost = db.Column(db.Numeric, nullable=False)
+    receipt_barcode= db.Column(db.VARCHAR(40), nullable=True)
+    receipt_total_cost = db.Column(db.Numeric, nullable=False)
     receipt_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
 
 class WarehouseSuppliers(db.Model):
