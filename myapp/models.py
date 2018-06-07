@@ -123,6 +123,7 @@ class WarehouseReceipts(db.Model):
     receipt_receiver = db.Column(db.NVARCHAR(15), db.ForeignKey(WarehouseUsers.user_empcode))
     receipt_qty = db.Column(db.Numeric, nullable=False)
     receipt_barcode= db.Column(db.VARCHAR(40), nullable=True)
+    receipts_warehouse = db.Column(db.Integer, nullable=False)
     receipt_total_cost = db.Column(db.Numeric, nullable=False)
     receipt_document_no = db.Column(db.DateTime, default=datetime.datetime.today, nullable=False)
 
@@ -167,6 +168,15 @@ class WarehouseUnits(db.Model):
     units_abbr = db.Column(db.NVARCHAR(15), nullable=False)
 
     product = db.relationship("WarehouseProducts", lazy="dynamic", backref="unitnames")
+
+class WarehouseLocations(db.Model):
+    __tablename_ = "warehouse_locations"
+    location_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    location_name = db.Column(db.VARCHAR(40), nullable=False)
+    location_lat = db.Column(db.Numeric, nullable=False)
+    location_long = db.Column(db.Numeric, nullable=False)
+
+    receipts = db.relationship("WarehouseReceipts", lazy="dynamic", backref="location")
 
 class WarehouseCategories(db.Model):
     __tablename_ = "warehouse_categories"
